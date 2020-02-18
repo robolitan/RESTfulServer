@@ -23,9 +23,9 @@ public class RestController {
     UserService userService;
 
     @GetMapping("user")
-    public ResponseEntity users() {
+    public String users() throws JsonProcessingException {
         List<User> list = userService.getAll();
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(list);
+        return new ObjectMapper().writeValueAsString(list);
     }
 
     @PostMapping("create")
